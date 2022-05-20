@@ -9,7 +9,7 @@
  * @property {string} quantity
  * @property {string[]} images
  */
-const products = [
+ const products = [
   {
     "id": 1,
     "title": "iPhone 9",
@@ -573,9 +573,9 @@ const products = [
 function sortBy(products, sort = 'id', order = 'ASC') {
   return products.sort((a, b) => {
     if (order === 'ASC') {
-      return a[sort] - b[sort]
+      return a[sort] < b[sort] ? -1 : 1
     } else {
-      return b[sort] - a[sort]
+      return a[sort] > b[sort] ? -1 : 1
     }
   })
 }
@@ -587,7 +587,7 @@ function sortBy(products, sort = 'id', order = 'ASC') {
  * @returns {Products[]}
  */
 function filterBy(products, key, value) {
-  return products.filter(product => key && value ? product[key] === value : true)
+  return products.filter(product => key && value ? product[key].toString().includes(value) : true)
 }
 
 /**
